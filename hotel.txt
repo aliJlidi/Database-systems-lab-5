@@ -1,0 +1,44 @@
+-- Guests
+INSERT INTO Guest VALUES
+(1,'Alice','alice@x.com'),
+(2,'Béla','bela@x.com'),
+(3,'Csenge','csenge@x.com'),                 -- no reservations
+(4,'Dániel','daniel@x.com');                 -- no reservations
+
+-- Room Types
+INSERT INTO RoomType VALUES
+(10,'Standard',20000,2),
+(11,'Suite',45000,4),
+(12,'Deluxe',35000,3);                       -- no rooms of this type
+
+-- Rooms
+INSERT INTO Room VALUES
+(100,'101',10,'available'),
+(101,'102',10,'maintenance'),
+(102,'201',11,'available'),
+(103,'202',11,'occupied'),
+(104,'301',10,'available');                  -- never reserved
+
+-- Services
+INSERT INTO Service VALUES
+(900,'Breakfast',3500),
+(901,'Spa',12000),
+(902,'Airport Transfer',8000),
+(903,'Late Checkout',5000);                  -- never sold
+
+-- Reservations
+INSERT INTO Reservation VALUES
+(5000,1,100,'2025-11-11','2025-11-13','checked_in'),
+(5001,2,102,'2025-11-20','2025-11-22','booked'),
+(5002,2,101,'2025-11-12','2025-11-13','cancelled');  -- room in maintenance
+
+-- Reservation Services
+INSERT INTO ReservationService VALUES
+(5000,900,2),   -- 2 breakfasts
+(5000,901,1),   -- 1 spa
+(5001,902,1);   -- 1 airport transfer
+
+-- Invoices
+INSERT INTO Invoice VALUES
+(7000,5000, 20000*2 + 2*3500 + 1*12000, TRUE);
+-- No invoice for 5001; 5002 cancelled
