@@ -1,0 +1,34 @@
+-- Customers
+INSERT INTO Customer VALUES
+(1,'Anna','anna@x.com'),
+(2,'Bence','bence@x.com'),
+(3,'Csilla','csilla@x.com');           -- Csilla has no orders
+
+-- Addresses
+INSERT INTO Address VALUES
+(10,1,'Main 1','Miskolc'),
+(11,1,'Side 2','Miskolc'),
+(12,2,'River 9','Debrecen');           -- Csilla has no address
+
+-- Products
+INSERT INTO Product VALUES
+(101,'Laptop',350000,'Electronics',5),
+(102,'Mouse',5000,'Electronics',100),
+(103,'Mug',2500,'Home',0),             -- Never ordered, out of stock
+(104,'Keyboard',15000,'Electronics',10); -- Never ordered, in stock
+
+-- Orders
+INSERT INTO OrderHeader VALUES
+(500,1,'shipped','2025-11-10','card'),
+(501,2,'pending','2025-11-11','cash'); -- Csilla has no orders
+
+-- Order Items
+INSERT INTO OrderItem VALUES
+(500,101,1,350000),
+(500,102,2,5000),
+(501,102,1,5000);                      -- Mug never ordered
+
+-- Reviews
+INSERT INTO Review VALUES
+(900,101,1,5,'Great'),
+(901,102,2,3,'OK');                    -- Mug never reviewed, Keyboard never reviewed
