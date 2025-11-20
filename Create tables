@@ -1,0 +1,44 @@
+CREATE TABLE employee (
+  emp_id      INTEGER   PRIMARY  KEY,
+  first_name  TEXT,
+  last_name   TEXT,
+  birth_day   TEXT,   --
+  sex         TEXT,
+  salary      INTEGER,
+  super_id    INTEGER,
+  branch_id   INTEGER,
+  FOREIGN KEY (super_id) REFERENCES  employee(emp_id) ON DELETE SET NULL,
+  FOREIGN KEY (branch_id) REFERENCES  branch(branch_id) ON DELETE SET NULL
+);
+
+CREATE TABLE branch (
+  branch_id       INTEGER PRIMARY KEY,
+  branch_name     TEXT,
+  mgr_id          INTEGER,
+  mgr_start_date  TEXT,
+  FOREIGN KEY (mgr_id) REFERENCES employee(emp_id) ON DELETE SET NULL
+);
+
+CREATE TABLE client (
+  client_id   INTEGER PRIMARY KEY,
+  client_name TEXT,
+  branch_id   INTEGER,
+  FOREIGN KEY (branch_id) REFERENCES branch(branch_id) ON DELETE SET NULL
+);
+
+CREATE TABLE works_with (
+  emp_id       INTEGER,
+  client_id    INTEGER,
+  total_sales  INTEGER,
+  PRIMARY KEY (emp_id, client_id),
+  FOREIGN KEY (emp_id) REFERENCES employee(emp_id) ON DELETE CASCADE,
+  FOREIGN KEY (client_id) REFERENCES client(client_id) ON DELETE CASCADE
+);
+
+CREATE TABLE branch_supplier (
+  branch_id      INTEGER,
+  supplier_name  TEXT,
+  supply_type    TEXT,
+  PRIMARY KEY (branch_id, supplier_name),
+  FOREIGN KEY (branch_id) REFERENCES branch(branch_id) ON DELETE CASCADE
+);
